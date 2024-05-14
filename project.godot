@@ -16,4 +16,4 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/QuickPluginManager/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/QuickPluginManager/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/godotsize/plugin.cfg", "res://addons/timer/plugin.cfg")
