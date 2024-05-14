@@ -39,5 +39,5 @@ func physics_update(delta):
 		Transitioned.emit(self,'PlayerIdle')
 	if player.is_on_floor():
 		Transitioned.emit(self,'PlayerIdle')
-	elif not player.is_on_floor():
+	elif not player.is_on_floor() and not player.is_on_wall_only():
 		Transitioned.emit(self,'PlayerFalling')

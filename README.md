@@ -4,6 +4,9 @@ SheepCommander's Godot project
 ## Tutorials used
 
 
+## Hano's design docs
+https://www.canva.com/design/DAGDKxkLcLw/2B1Ih7MeO2tE7Tr-LNKUQA/edit
+
 ## Style Guide
 https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html#code-order
 @tool
