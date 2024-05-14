@@ -8,3 +8,7 @@ lazygit.exe
 addons/timer/time.txt
 addons/godot-jolt/windows/~godot-jolt_windows-x64_editor.dll
 addons/trailmesh/bin/~libtrailmesh.windows.debug.x86_64.dll
+
+# Ignore all .tmp files
+*.tmp
+*.TMP
