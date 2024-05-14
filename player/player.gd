@@ -21,4 +21,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed('Restart'):
 		global_position = Vector3(0,1,0)
 
-# TODO: Add a PlayerSprinting state
+# TODO: Add a PlayerSprinting state? Or are we always running.
+# TODO: Input Handler & stuff like https://youtu.be/bNdFXooM1MQ

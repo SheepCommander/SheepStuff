@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://brvl2b2jfjn3j"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_dk24s"]
+[ext_resource type="Script" path="res://player/camera_manager_fps.gd" id="2_015lg"]
+[ext_resource type="Script" path="res://player/states/state_machine.gd" id="3_kbym6"]
+[ext_resource type="Script" path="res://player/player_states/player_idle.gd" id="4_m2bg0"]
+[ext_resource type="Script" path="res://player/player_states/player_walking.gd" id="5_6lq4h"]
+[ext_resource type="Script" path="res://player/player_states/player_sliding.gd" id="6_wociw"]
+[ext_resource type="Script" path="res://player/player_states/player_falling.gd" id="7_w00hy"]
+[ext_resource type="Script" path="res://player/player_states/player_jumping.gd" id="8_ns6r0"]
+[ext_resource type="Script" path="res://player/player_states/player_slamming.gd" id="9_33it6"]
+[ext_resource type="Script" path="res://player/player_states/player_wallhang.gd" id="10_disci"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx0au"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_dk24s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tx0au")
+
+[node name="CameraPosition" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+script = ExtResource("2_015lg")
+
+[node name="CameraRotation" type="Node3D" parent="CameraPosition"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CameraPosition/CameraRotation"]
+unique_name_in_owner = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CameraPosition/CameraRotation"]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("3_kbym6")
+initial_state = NodePath("PlayerIdle")
+player = NodePath("..")
+
+[node name="PlayerIdle" type="Node" parent="StateMachine"]
+script = ExtResource("4_m2bg0")
+
+[node name="PlayerWalking" type="Node" parent="StateMachine"]
+script = ExtResource("5_6lq4h")
+
+[node name="PlayerSliding" type="Node" parent="StateMachine"]
+script = ExtResource("6_wociw")
+
+[node name="PlayerFalling" type="Node" parent="StateMachine"]
+script = ExtResource("7_w00hy")
+
+[node name="PlayerJumping" type="Node" parent="StateMachine"]
+script = ExtResource("8_ns6r0")
+
+[node name="PlayerSlamming" type="Node" parent="StateMachine"]
+script = ExtResource("9_33it6")
+
+[node name="PlayerWallhang" type="Node" parent="StateMachine"]
+script = ExtResource("10_disci")
+
+[connection signal="NewStateTransitioned" from="StateMachine" to="CameraPosition" method="_on_player_state_machine_new_state_transitioned"]

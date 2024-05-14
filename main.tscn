@@ -1,15 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://t275mpnu5nmk"]
+[gd_scene load_steps=14 format=3 uid="uid://t275mpnu5nmk"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_sewcu"]
-[ext_resource type="Script" path="res://player/camera_manager_fps.gd" id="2_1grwv"]
-[ext_resource type="Script" path="res://player/states/state_machine.gd" id="3_3hywy"]
-[ext_resource type="Script" path="res://player/player_states/player_idle.gd" id="4_y6p11"]
-[ext_resource type="Script" path="res://player/player_states/player_walking.gd" id="5_mj231"]
-[ext_resource type="Script" path="res://player/player_states/player_sliding.gd" id="6_vt2up"]
-[ext_resource type="Script" path="res://player/player_states/player_falling.gd" id="7_mv4ng"]
-[ext_resource type="Script" path="res://player/player_states/player_jumping.gd" id="8_cc773"]
-[ext_resource type="Script" path="res://player/player_states/player_slamming.gd" id="9_msc21"]
-[ext_resource type="Script" path="res://player/player_states/player_wallhang.gd" id="10_fx5mp"]
+[ext_resource type="PackedScene" uid="uid://brvl2b2jfjn3j" path="res://player/player.tscn" id="1_eqi1g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gmg48"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -69,140 +60,87 @@ uv1_scale = Vector3(0.39, 0.39, 0.39)
 uv1_triplanar = true
 texture_filter = 0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx0au"]
-
 [node name="Main" type="Node"]
 
 [node name="World1" type="Node3D" parent="."]
 
-[node name="Node" type="Node" parent="World1"]
+[node name="Env" type="Node" parent="World1"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World1/Node"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World1/Env"]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World1/Node"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World1/Env"]
 environment = SubResource("Environment_iy7x6")
 
-[node name="Node2" type="Node" parent="World1"]
+[node name="Static" type="Node" parent="World1"]
 
-[node name="Floor" type="CSGBox3D" parent="World1/Node2"]
+[node name="Floor" type="CSGBox3D" parent="World1/Static"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_usbfw")
 
-[node name="Floor2" type="CSGBox3D" parent="World1/Node2"]
+[node name="Floor2" type="CSGBox3D" parent="World1/Static"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -54, -121)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_usbfw")
 
-[node name="Floor3" type="CSGBox3D" parent="World1/Node2"]
+[node name="Floor3" type="CSGBox3D" parent="World1/Static"]
 transform = Transform3D(0.891094, 0.453819, 0, -0.453819, 0.891094, 0, 0, 0, 1, 0, -54, -243)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_usbfw")
 
-[node name="Floor4" type="CSGBox3D" parent="World1/Node2"]
+[node name="Floor4" type="CSGBox3D" parent="World1/Static"]
 transform = Transform3D(0.9674, -0.253251, 0, 0.253251, 0.9674, 0, -7.45058e-09, -2.98023e-08, 1, 0, -54, -371)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_usbfw")
 
-[node name="Floor5" type="CSGBox3D" parent="World1/Node2"]
+[node name="Floor5" type="CSGBox3D" parent="World1/Static"]
 transform = Transform3D(0.9674, -0.253251, 0, 0.237454, 0.907056, -0.347656, 0.0880443, 0.336322, 0.937622, 69.705, -21.8976, -518.34)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_usbfw")
 
-[node name="Wall" type="CSGMesh3D" parent="World1/Node2"]
+[node name="Wall" type="CSGMesh3D" parent="World1/Static"]
 transform = Transform3D(9.22983, 0, 0, 0, 50.104, 0, 0, 0, 50.104, -32.8692, 19.947, -0.443275)
 use_collision = true
 mesh = SubResource("BoxMesh_g80ym")
 material = SubResource("StandardMaterial3D_1qqvv")
 
-[node name="Wall2" type="CSGMesh3D" parent="World1/Node2"]
+[node name="Wall2" type="CSGMesh3D" parent="World1/Static"]
 transform = Transform3D(2.29252, 0, 0, 0, 50.104, 0, 0, 0, 50.104, 44.1104, 15.6906, -74.2783)
 use_collision = true
 mesh = SubResource("BoxMesh_g80ym")
 material = SubResource("StandardMaterial3D_1qqvv")
 
-[node name="Wall3" type="CSGMesh3D" parent="World1/Node2"]
+[node name="Wall3" type="CSGMesh3D" parent="World1/Static"]
 transform = Transform3D(2.29252, 0, 0, 0, 50.104, 0, 0, 0, 50.104, 44.1104, -35.1675, -438.184)
 use_collision = true
 mesh = SubResource("BoxMesh_g80ym")
 material = SubResource("StandardMaterial3D_1qqvv")
 
-[node name="Wall4" type="CSGMesh3D" parent="World1/Node2"]
+[node name="Wall4" type="CSGMesh3D" parent="World1/Static"]
 transform = Transform3D(1.17645, 0, 43.0037, -0.397937, 49.0686, 5.19995, -1.92699, -10.1331, 25.1804, 23.875, -35.1675, -475.016)
 use_collision = true
 mesh = SubResource("BoxMesh_g80ym")
 material = SubResource("StandardMaterial3D_1qqvv")
 
-[node name="Wall5" type="CSGMesh3D" parent="World1/Node2"]
+[node name="Wall5" type="CSGMesh3D" parent="World1/Static"]
 transform = Transform3D(2.25631, 0, -8.87094, 0, 20.0225, 0, 0.405892, 0, 49.3125, 31.9282, 9.9839, -73.4478)
 use_collision = true
 mesh = SubResource("BoxMesh_g80ym")
 material = SubResource("StandardMaterial3D_1qqvv")
 
-[node name="Wall6" type="CSGMesh3D" parent="World1/Node2"]
+[node name="Wall6" type="CSGMesh3D" parent="World1/Static"]
 transform = Transform3D(2.09455, -18.6289, -8.23499, 0.838907, 46.5121, -3.29826, 0.405892, 0, 49.3125, 35.5256, 18.3742, 2.92905)
 use_collision = true
 mesh = SubResource("BoxMesh_g80ym")
 material = SubResource("StandardMaterial3D_1qqvv")
 
-[node name="Node3" type="Node" parent="World1"]
+[node name="Characters" type="Node" parent="World1"]
 
-[node name="Player" type="CharacterBody3D" parent="World1/Node3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_sewcu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World1/Node3/Player"]
-shape = SubResource("CapsuleShape3D_tx0au")
-
-[node name="CameraPosition" type="Node3D" parent="World1/Node3/Player"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-script = ExtResource("2_1grwv")
-
-[node name="CameraRotation" type="Node3D" parent="World1/Node3/Player/CameraPosition"]
-unique_name_in_owner = true
-
-[node name="Camera3D" type="Camera3D" parent="World1/Node3/Player/CameraPosition/CameraRotation"]
-unique_name_in_owner = true
-
-[node name="StateMachine" type="Node" parent="World1/Node3/Player" node_paths=PackedStringArray("initial_state", "player")]
-script = ExtResource("3_3hywy")
-initial_state = NodePath("PlayerWalking")
-player = NodePath("..")
-
-[node name="PlayerIdle" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("4_y6p11")
-player = NodePath("../..")
-
-[node name="PlayerWalking" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("5_mj231")
-player = NodePath("../..")
-
-[node name="PlayerSliding" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("6_vt2up")
-player = NodePath("../..")
-
-[node name="PlayerFalling" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("7_mv4ng")
-player = NodePath("../..")
-
-[node name="PlayerJumping" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("8_cc773")
-player = NodePath("../..")
-
-[node name="PlayerSlamming" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("9_msc21")
-player = NodePath("../..")
-
-[node name="PlayerWallhang" type="Node" parent="World1/Node3/Player/StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("10_fx5mp")
-player = NodePath("../..")
-
-[connection signal="NewStateTransitioned" from="World1/Node3/Player/StateMachine" to="World1/Node3/Player/CameraPosition" method="_on_player_state_machine_new_state_transitioned"]
+[node name="Player" parent="World1/Characters" instance=ExtResource("1_eqi1g")]
