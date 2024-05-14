@@ -10,7 +10,7 @@ https://www.canva.com/design/DAGDKxkLcLw/2B1Ih7MeO2tE7Tr-LNKUQA/edit
 
 ## Style Guide
 https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html#code-order
-
+```
 Comments & doc comments should have a space
 # wtf is this
 ## variable that kills people
@@ -22,12 +22,12 @@ Static typing:
 	var x := "Kill hano" ## Clearly a string
 	var x : float = 0.0 ## float vs. int isn't clear, explicitly say the type
 	func hanodev(food: Food, alcohol: Drink) ## Use this style
-
+```
 ### This
 @tool
 class_name
 extends
-## docstring
+`## docstring`
 
 signals
 enums
