@@ -1,10 +1,13 @@
+## SheepCommander's Godot 4.x gitignore
+## v3.0 - Yuuka
+
 # Godot 4+ specific ignores
 .godot/
 
-# Lazygit
+# Ignore Lazygit
 lazygit.exe
 
-# These addon files keep changing
+# Ignore constantly changing addon files
 addons/timer/time.txt
 addons/godot-jolt/windows/~godot-jolt_windows-x64_editor.dll
 addons/trailmesh/bin/~libtrailmesh.windows.debug.x86_64.dll
@@ -12,3 +15,11 @@ addons/trailmesh/bin/~libtrailmesh.windows.debug.x86_64.dll
 # Ignore all .tmp files
 *.tmp
 *.TMP
+
+# Ignore source Krita files
+*.kra
+
+# Ignore backup files created by Krita and other programs
+*.*~
+*.png~
+*.kra~
